@@ -17,6 +17,7 @@ main{
     width: 100%;
     background: linear-gradient(to right bottom,rgb(32, 32, 32),rgb(32, 32, 32),black);
     padding: 20px;
+  
 }
 
 section{
@@ -26,13 +27,19 @@ section{
     border-radius: 10px;
     margin: auto;
     /* overflow: hidden; */
+    
 }
 
 .all-reels{
     height: 100%;
     width: 100%;
-    
+    overflow: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
 
+.all-reels::-webkit-scrollbar{
+    display: none;
 }
 
 .reel{
@@ -40,8 +47,11 @@ section{
     width: 100%;
     position: relative;
     background-color: aqua;
-    /* overflow: hidden; */
+    overflow: hidden;
     border-radius: 10px;
+    margin-bottom: 20px;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .reel img{
