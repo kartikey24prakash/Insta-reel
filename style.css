@@ -152,3 +152,28 @@ section{
 .right > div h6{
     pointer-events: none;
 }
+
+.mute{
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(29, 28, 28);
+    cursor: pointer;
+    position: absolute;
+    top:10px;
+    right: 10px;
+}
+
+
+.mute:active{
+    scale: 0.9;
+}
+
+.mute i{
+    font-size: 24px;
+    color: white;
+    /* pointer-events: none; */
+}

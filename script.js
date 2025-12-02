@@ -1,5 +1,6 @@
 const reels = [
   {
+    ismuted:true,
     username: "tech_vibes",
     likeCount: 12450,
     isLiked: false,
@@ -10,7 +11,8 @@ const reels = [
     shareCount: 210,
     isFollowed: true
   },
-  {
+  { 
+    ismuted:true,
     username: "travel_with_me",
     likeCount: 45210,
     isLiked: false,
@@ -22,6 +24,7 @@ const reels = [
     isFollowed: false
   },
   {
+    ismuted:true,
     username: "foodie_feast",
     likeCount: 23100,
     isLiked: false,
@@ -33,6 +36,7 @@ const reels = [
     isFollowed: true
   },
   {
+    ismuted:true,
     username: "fitness_freak",
     likeCount: 8750,
     isLiked: false,
@@ -44,6 +48,7 @@ const reels = [
     isFollowed: false
   },
   {
+    ismuted:true,
     username: "dance_world",
     likeCount: 52000,
     isLiked: false,
@@ -55,6 +60,7 @@ const reels = [
     isFollowed: true
   },
   {
+    ismuted:true,
     username: "daily_quotes",
     likeCount: 6400,
     isLiked: false,
@@ -66,6 +72,7 @@ const reels = [
     isFollowed: false
   },
   {
+    ismuted:true,
     username: "gaming_hub",
     likeCount: 30210,
     isLiked: false,
@@ -77,6 +84,7 @@ const reels = [
     isFollowed: true
   },
   {
+    ismuted:true,
     username: "pet_paradise",
     likeCount: 14890,
     isLiked: false,
@@ -88,6 +96,7 @@ const reels = [
     isFollowed: true
   },
   {
+    ismuted:true,
     username: "style_corner",
     likeCount: 38400,
     isLiked: false,
@@ -99,6 +108,7 @@ const reels = [
     isFollowed: false
   },
   {
+    ismuted:true,
     username: "music_wave",
     likeCount: 26800,
     isLiked: false,
@@ -118,9 +128,12 @@ var allreels = document.querySelector('.all-reels');
 function adddata(){
   var sum='';
   reels.forEach(function(elem , idx){
-  // console.log(elem);
+  
     sum = sum +`<div class="reel">
-                   <video autoplay loop muted src="${elem.video}"></video>            
+                   <video autoplay loop ${elem.ismuted?'muted':''} src="${elem.video}">
+                   
+                   </video>            
+                   <div class="mute" id=${idx}><i class="ri-volume-mute-fill"></i></div>
                     <div  class="bottom">
                         <div class="user">
                             <img src="${elem.userProfile}" alt="">
@@ -171,6 +184,7 @@ allreels.addEventListener('click',function(dets){
     reels[dets.target.id].likeCount--;
     reels[dets.target.id].isLiked =false;
   }
+  adddata ();
   }
 
   // console.log(reels[dets.target.id]);
@@ -181,7 +195,18 @@ allreels.addEventListener('click',function(dets){
     else{
       reels[dets.target.id].isFollowed =false;
     }   
+    adddata ();
   }  
-  adddata ();
+  
+  if(dets.target.className == 'mute'){
+    if(!reels[dets.target.id].ismuted){
+      reels[dets.target.id].ismuted=true;
+    }
+    else{
+      reels[dets.target.id].ismuted =false;
+    }   
+    adddata ();
+  } 
+  
 
 })
