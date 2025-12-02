@@ -130,9 +130,7 @@ function adddata(){
   reels.forEach(function(elem , idx){
   
     sum = sum +`<div class="reel">
-                   <video autoplay loop ${elem.ismuted?'muted':''} src="${elem.video}">
-                   
-                   </video>            
+                   <video autoplay loop ${elem.ismuted?'muted':''} src="${elem.video}"></video>            
                    <div class="mute" id=${idx}><i class="ri-volume-mute-fill"></i></div>
                     <div  class="bottom">
                         <div class="user">
