@@ -13,7 +13,7 @@ const reels = [
   {
     username: "travel_with_me",
     likeCount: 45210,
-    isLiked: true,
+    isLiked: false,
     commentCount: 980,
     caption: "Sunsets are therapy 🌅",
     video: "./vid/vid2.mp4",
@@ -46,7 +46,7 @@ const reels = [
   {
     username: "dance_world",
     likeCount: 52000,
-    isLiked: true,
+    isLiked: false,
     commentCount: 1600,
     caption: "Groove mode activated 🔥💃",
     video: "./vid/vid5.mp4",
@@ -68,7 +68,7 @@ const reels = [
   {
     username: "gaming_hub",
     likeCount: 30210,
-    isLiked: true,
+    isLiked: false,
     commentCount: 540,
     caption: "New game dropped 🎮🔥",
     video: "./vid/vid4.mp4",
@@ -90,7 +90,7 @@ const reels = [
   {
     username: "style_corner",
     likeCount: 38400,
-    isLiked: true,
+    isLiked: false,
     commentCount: 880,
     caption: "New outfit check 😎👗",
     video: "./vid/vid1.mp4",
@@ -111,15 +111,21 @@ const reels = [
   }
 ];
 
-var sum='';
-reels.forEach(function(elem){
+var allreels = document.querySelector('.all-reels');
+
+
+
+function adddata(){
+  var sum='';
+  reels.forEach(function(elem , idx){
+  // console.log(elem);
     sum = sum +`<div class="reel">
                    <video autoplay loop muted src="${elem.video}"></video>            
-                    <div class="bottom">
+                    <div  class="bottom">
                         <div class="user">
                             <img src="${elem.userProfile}" alt="">
                             <h4>${elem.username}</h4>
-                            <button>${elem.isFollowed?"Unfollow":"Follow"}</button>
+                            <button id=${idx} class="follow">${elem.isFollowed?"Unfollow":"Follow"}</button>
                             <!-- <h3>Germany room heaters are radiators </h3> -->
                         </div>
                         <h3>${elem.caption}h3>
@@ -127,7 +133,7 @@ reels.forEach(function(elem){
                     </div>
 
                     <div class="right">
-                        <div class="like">
+                        <div id=${idx} class="like">
                             <h4 class="like-icon icon">${elem.isLiked?'<i class="love ri-heart-fill"></i>':'<i class="ri-heart-line"></i>'}</h4>
                             <h6>${elem.likeCount}</h6>
                         </div>
@@ -146,6 +152,36 @@ reels.forEach(function(elem){
                     </div>
                 </div>`
                 
+  })
+  allreels.innerHTML = sum;
+
+}
+
+adddata ();
+
+allreels.addEventListener('click',function(dets){
+
+
+  if(dets.target.className == 'like'){
+    if(!reels[dets.target.id].isLiked){
+    reels[dets.target.id].likeCount++;
+    reels[dets.target.id].isLiked =true;
+  }
+  else{
+    reels[dets.target.id].likeCount--;
+    reels[dets.target.id].isLiked =false;
+  }
+  }
+
+  // console.log(reels[dets.target.id]);
+  if(dets.target.className == 'follow'){
+    if(!reels[dets.target.id].isFollowed){
+      reels[dets.target.id].isFollowed =true;
+    }
+    else{
+      reels[dets.target.id].isFollowed =false;
+    }   
+  }  
+  adddata ();
+
 })
-var allreels = document.querySelector('.all-reels');
-allreels.innerHTML = sum;
